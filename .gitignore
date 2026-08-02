@@ -1,6 +1,9 @@
 # dependencies (bun install)
 node_modules
 
+# build 
+weather
+
 # output
 out
 dist
@@ -14,6 +17,11 @@ coverage
 logs
 _.log
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# app data
+weather.json
+/weather
+/weather.exe
 
 # dotenv environment variable files
 .env
