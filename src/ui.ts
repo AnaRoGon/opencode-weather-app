@@ -1,8 +1,9 @@
 import { stdin as input, stdout as output } from "node:process";
 
+import { cyan } from "./colors.ts";
 import type { City, TemperatureUnit } from "./types.ts";
 
-export const SEPARATOR = "════════════════════════════════════════";
+export const SEPARATOR = cyan("════════════════════════════════════════");
 
 let buffer = "";
 let ended = false;
@@ -60,7 +61,7 @@ export function renderMenu(cityCount: number, unit: TemperatureUnit): void {
   const unitLabel = unit === "celsius" ? "°C" : "°F";
   console.log(`
 ${SEPARATOR}
-         WEATHER CLI
+${cyan("         WEATHER CLI")}
 ${SEPARATOR}
   1. Clima de ciudad default
   2. Clima de todas las ciudades (${cityCount})

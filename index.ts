@@ -1,4 +1,5 @@
 import { geocodeCity, getForecast } from "./src/api.ts";
+import { green, red, yellow } from "./src/colors.ts";
 import { loadConfig, saveConfig } from "./src/config.ts";
 import type { City, TemperatureUnit, WeatherConfig } from "./src/types.ts";
 import { cityLabel, closeInput, prompt, renderCities, renderMenu, SEPARATOR } from "./src/ui.ts";
@@ -7,9 +8,9 @@ async function showWeatherForCity(city: City, unit: TemperatureUnit): Promise<vo
   try {
     const temperature = await getForecast(city, unit);
     const unitLabel = unit === "celsius" ? "°C" : "°F";
-    console.log(`\n${SEPARATOR}\n  ${cityLabel(city)}\n  ${temperature} ${unitLabel}\n${SEPARATOR}`);
+    console.log(`\n${SEPARATOR}\n  ${cityLabel(city)}\n  ${yellow(`${temperature} ${unitLabel}`)}\n${SEPARATOR}`);
   } catch (error) {
-    console.log(`\n  Error: ${error instanceof Error ? error.message : String(error)}`);
+    console.log(`\n  ${red(`Error: ${error instanceof Error ? error.message : String(error)}`)}`);
   }
 }
 
@@ -67,7 +68,7 @@ async function addCity(config: WeatherConfig): Promise<void> {
 
   config.cities.push(selected);
   await saveConfig(config);
-  console.log(`\n  Ciudad "${cityLabel(selected)}" agregada.`);
+  console.log(`\n  ${green(`Ciudad "${cityLabel(selected)}" agregada.`)}`);
 }
 
 async function removeCity(config: WeatherConfig): Promise<void> {
@@ -90,7 +91,7 @@ async function removeCity(config: WeatherConfig): Promise<void> {
     config.defaultCity = null;
   }
   await saveConfig(config);
-  console.log(`\n  Ciudad "${city.name}" eliminada.`);
+  console.log(`\n  ${green(`Ciudad "${city.name}" eliminada.`)}`);
 }
 
 async function setDefaultCity(config: WeatherConfig): Promise<void> {
@@ -122,7 +123,7 @@ async function setDefaultCity(config: WeatherConfig): Promise<void> {
 
   config.defaultCity = city.name;
   await saveConfig(config);
-  console.log(`\n  Ciudad default establecida: "${cityLabel(city)}".`);
+  console.log(`\n  ${green(`Ciudad default establecida: "${cityLabel(city)}".`)}`);
 }
 
 async function adjustSettings(config: WeatherConfig): Promise<void> {
@@ -143,7 +144,7 @@ async function adjustSettings(config: WeatherConfig): Promise<void> {
 
   await saveConfig(config);
   const newUnit = config.unit === "celsius" ? "°C" : "°F";
-  console.log(`\n  Unidad actualizada: ${newUnit}`);
+  console.log(`\n  ${green(`Unidad actualizada: ${newUnit}`)}`);
 }
 
 async function main(): Promise<void> {
