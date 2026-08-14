@@ -1,8 +1,8 @@
-import { geocodeCity, getForecast } from "./src/api.ts";
+import { geocodeCity, getDailyForecast, getForecast } from "./src/api.ts";
 import { green, red, yellow } from "./src/colors.ts";
 import { loadConfig, saveConfig } from "./src/config.ts";
 import type { City, TemperatureUnit, WeatherConfig } from "./src/types.ts";
-import { cityLabel, closeInput, prompt, renderCities, renderMenu, SEPARATOR } from "./src/ui.ts";
+import { cityLabel, closeInput, prompt, renderCities, renderDailyForecast, renderMenu, SEPARATOR } from "./src/ui.ts";
 
 async function showWeatherForCity(city: City, unit: TemperatureUnit): Promise<void> {
   try {
@@ -30,6 +30,30 @@ async function showAllCitiesWeather(config: WeatherConfig): Promise<void> {
   }
   for (const city of config.cities) {
     await showWeatherForCity(city, config.unit);
+  }
+}
+
+async function showSevenDayForecast(config: WeatherConfig): Promise<void> {
+  if (config.cities.length === 0) {
+    console.log("\n  No hay ciudades guardadas. Usa la opción 3 para agregar una.");
+    return;
+  }
+
+  renderCities(config.cities);
+  const choice = await prompt("  Elige un número (0 para cancelar): ");
+  const index = Number.parseInt(choice, 10) - 1;
+  const city = config.cities[index];
+  if (!city) {
+    console.log("\n  Selección inválida, cancelado.");
+    return;
+  }
+
+  try {
+    const forecast = await getDailyForecast(city, config.unit);
+    console.log(`\n  ${cityLabel(city)}`);
+    renderDailyForecast(forecast, config.unit);
+  } catch (error) {
+    console.log(`\n  ${red(`Error: ${error instanceof Error ? error.message : String(error)}`)}`);
   }
 }
 
@@ -170,6 +194,9 @@ async function main(): Promise<void> {
         break;
       case "5":
         await setDefaultCity(config);
+        break;
+      case "6":
+        await showSevenDayForecast(config);
         break;
       case "8":
         await adjustSettings(config);
