@@ -19,7 +19,8 @@ _.log
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # app data
-weather.json
+cities.json
+settings.json
 /weather
 /weather.exe
 
