@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Bun-based TypeScript weather CLI app (OpenMeteo). No tests or lint scripts exist. The app works: it runs `src/index.ts` and builds a standalone binary via `bun build --compile`.
+Bun-based TypeScript weather CLI app (OpenMeteo). Tests live in `tests/` (bun:test) and run with `bun run test`. The `build` script runs the tests first and only compiles the standalone binary if they pass. No lint scripts exist.
 
 ## Runtime: Bun, not Node
 
@@ -8,7 +8,8 @@ Use Bun for everything. Do not introduce `node`, `npm`, `pnpm`, `yarn`, `ts-node
 
 - Run: `bun src/index.ts` (or `bun run src/index.ts`)
 - Install: `bun install`
-- Test: `bun test` (none exist yet; use `bun:test` when adding)
+- Test: `bun run test` (runs `bun test --parallel`; tests live in `tests/`). Also `bun run test:watch`, `bun run test:coverage`.
+- Build: `bun run build` runs the tests first (`bun test --parallel`) and only compiles the binary if they pass.
 - Execute a package: `bun <pkg>`
 - Bun auto-loads `.env` - do not add dotenv loader.
 
