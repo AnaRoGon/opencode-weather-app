@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { cityLabel, dayLabel, unitLabel } from "../src/utils/format.ts";
-import type { City } from "../src/types/City.ts";
+import { cityLabel, dayLabel, unitLabel } from "../../src/utils/format.ts";
+import type { City } from "../../src/types/City.ts";
 
 describe("cityLabel", () => {
   test("incluye el país cuando existe", () => {

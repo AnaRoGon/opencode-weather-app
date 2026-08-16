@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { CITIES_FILE, SETTINGS_FILE, SEPARATOR, WEATHER_DESCRIPTIONS } from "../src/utils/constants.ts";
+import { CITIES_FILE, SETTINGS_FILE, SEPARATOR, WEATHER_DESCRIPTIONS } from "../../src/utils/constants.ts";
 
 describe("constants de archivos", () => {
   test("nombres de archivos de datos", () => {

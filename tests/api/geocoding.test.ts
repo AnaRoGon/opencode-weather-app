@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from "bun:test";
-import { geocodeCity } from "../src/api/geocoding.ts";
+import { geocodeCity } from "../../src/api/geocoding.ts";
 
 function mockFetchResponse(status: number, body: unknown) {
   globalThis.fetch = () =>

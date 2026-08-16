@@ -1,17 +1,17 @@
 import { beforeEach, describe, expect, mock, test, spyOn } from "bun:test";
-import type { WeatherConfig } from "../src/types/Config.ts";
+import type { WeatherConfig } from "../../src/types/Config.ts";
 
 process.env.NO_COLOR = "1";
 
 let promptAnswers: string[] = [];
 
-mock.module("../src/presentation/input.ts", () => ({
+mock.module("../../src/presentation/input.ts", () => ({
   prompt: async () => promptAnswers.shift() ?? "9",
   askNumberChoice: async () => null,
   closeInput: () => {},
 }));
 
-const { runMenu } = await import("../src/presentation/menu.ts");
+const { runMenu } = await import("../../src/presentation/menu.ts");
 
 const config: WeatherConfig = {
   cities: [],

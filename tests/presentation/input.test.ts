@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { stdin } from "node:process";
-import { askNumberChoice, prompt } from "../src/presentation/input.ts";
+import { askNumberChoice, prompt } from "../../src/presentation/input.ts";
 
 function feedInput(data: string): void {
   stdin.emit("data", data);

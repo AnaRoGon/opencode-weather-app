@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 process.env.FORCE_COLOR = "1";
 
-const colors = await import("../src/utils/colors.ts");
+const colors = await import("../../src/utils/colors.ts");
 
 describe("colors con FORCE_COLOR=1", () => {
   test("envuelve con códigos ANSI", () => {

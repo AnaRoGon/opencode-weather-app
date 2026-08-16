@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 process.env.NO_COLOR = "1";
 
-const colors = await import("../src/utils/colors.ts");
+const colors = await import("../../src/utils/colors.ts");
 
 describe("colors con NO_COLOR=1", () => {
   test("devuelve el texto plano sin ANSI", () => {

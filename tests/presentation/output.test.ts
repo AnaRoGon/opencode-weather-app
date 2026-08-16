@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, test, spyOn } from "bun:test";
-import type { City } from "../src/types/City.ts";
+import type { City } from "../../src/types/City.ts";
 
 process.env.NO_COLOR = "1";
 
-const output = await import("../src/presentation/output.ts");
+const output = await import("../../src/presentation/output.ts");
 
 const city: City = { name: "Madrid", latitude: 40.4165, longitude: -3.70256, country: "España" };
 

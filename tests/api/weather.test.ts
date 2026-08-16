@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from "bun:test";
-import { getDailyForecast, getForecast } from "../src/api/weather.ts";
-import type { City } from "../src/types/City.ts";
+import { getDailyForecast, getForecast } from "../../src/api/weather.ts";
+import type { City } from "../../src/types/City.ts";
 
 const city: City = { name: "Madrid", latitude: 40.4165, longitude: -3.70256, country: "España" };
 
